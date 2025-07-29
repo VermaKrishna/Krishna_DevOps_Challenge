@@ -138,7 +138,7 @@ resource "azurerm_cdn_frontdoor_route" "route" {
   cdn_frontdoor_custom_domain_ids = var.enable_custom_domain ? [azurerm_cdn_frontdoor_custom_domain.custom_domain[0].id] : []
  # 👇 This helps Terraform destroy the route first before trying to delete the rule set
   cdn_frontdoor_rule_set_ids = [
-    azurerm_cdn_frontdoor_rule_set.redirectroot.id
+    azurerm_cdn_frontdoor_rule_set.redirect_rules.id
   ]
 }
 
