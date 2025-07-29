@@ -1,0 +1,591 @@
+{
+  "version": 4,
+  "terraform_version": "1.12.2",
+  "serial": 21,
+  "lineage": "6c68d51b-757d-3336-0778-28cfe7765da1",
+  "outputs": {
+    "frontdoor_url": {
+      "value": "https://helloworldstacticapp-endpoint.azurefd.net",
+      "type": "string"
+    },
+    "storage_web_url": {
+      "value": "https://helloworldstacticappprim.z13.web.core.windows.net/",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "azurerm_cdn_frontdoor_endpoint",
+      "name": "fd_endpoint",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "cdn_frontdoor_profile_id": "/subscriptions/054cbff5-8449-4b2c-b938-44031a3c698c/resourceGroups/static-frontdoor-rg/providers/Microsoft.Cdn/profiles/helloworldstacticapp-fd",
+            "enabled": true,
+            "host_name": "helloworldstacticapp-endpoint-g4hbepfyegduawhs.z02.azurefd.net",
+            "id": "/subscriptions/054cbff5-8449-4b2c-b938-44031a3c698c/resourceGroups/static-frontdoor-rg/providers/Microsoft.Cdn/profiles/helloworldstacticapp-fd/afdEndpoints/helloworldstacticapp-endpoint",
+            "name": "helloworldstacticapp-endpoint",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_cdn_frontdoor_profile.fd_profile",
+            "azurerm_resource_group.rg"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_cdn_frontdoor_origin",
+      "name": "primary_origin",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "cdn_frontdoor_origin_group_id": "/subscriptions/054cbff5-8449-4b2c-b938-44031a3c698c/resourceGroups/static-frontdoor-rg/providers/Microsoft.Cdn/profiles/helloworldstacticapp-fd/originGroups/origin-group",
+            "certificate_name_check_enabled": false,
+            "enabled": true,
+            "host_name": "helloworldstacticappprim.z13.web.core.windows.net",
+            "http_port": 80,
+            "https_port": 443,
+            "id": "/subscriptions/054cbff5-8449-4b2c-b938-44031a3c698c/resourceGroups/static-frontdoor-rg/providers/Microsoft.Cdn/profiles/helloworldstacticapp-fd/originGroups/origin-group/origins/primary-origin",
+            "name": "primary-origin",
+            "origin_host_header": "helloworldstacticappprim.z13.web.core.windows.net",
+            "priority": 1,
+            "private_link": [],
+            "timeouts": null,
+            "weight": 1000
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_cdn_frontdoor_origin_group.origin_group",
+            "azurerm_cdn_frontdoor_profile.fd_profile",
+            "azurerm_resource_group.rg",
+            "azurerm_storage_account.primary"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_cdn_frontdoor_origin_group",
+      "name": "origin_group",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "cdn_frontdoor_profile_id": "/subscriptions/054cbff5-8449-4b2c-b938-44031a3c698c/resourceGroups/static-frontdoor-rg/providers/Microsoft.Cdn/profiles/helloworldstacticapp-fd",
+            "health_probe": [
+              {
+                "interval_in_seconds": 120,
+                "path": "/index.html",
+                "protocol": "Https",
+                "request_type": "GET"
+              }
+            ],
+            "id": "/subscriptions/054cbff5-8449-4b2c-b938-44031a3c698c/resourceGroups/static-frontdoor-rg/providers/Microsoft.Cdn/profiles/helloworldstacticapp-fd/originGroups/origin-group",
+            "load_balancing": [
+              {
+                "additional_latency_in_milliseconds": 0,
+                "sample_size": 4,
+                "successful_samples_required": 3
+              }
+            ],
+            "name": "origin-group",
+            "restore_traffic_time_to_healed_or_new_endpoint_in_minutes": 10,
+            "session_affinity_enabled": true,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_cdn_frontdoor_profile.fd_profile",
+            "azurerm_resource_group.rg"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_cdn_frontdoor_profile",
+      "name": "fd_profile",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/054cbff5-8449-4b2c-b938-44031a3c698c/resourceGroups/static-frontdoor-rg/providers/Microsoft.Cdn/profiles/helloworldstacticapp-fd",
+            "identity": [],
+            "name": "helloworldstacticapp-fd",
+            "resource_group_name": "static-frontdoor-rg",
+            "resource_guid": "5f20c262-aff4-456c-9840-5c5ef43f79b1",
+            "response_timeout_seconds": 120,
+            "sku_name": "Standard_AzureFrontDoor",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_cdn_frontdoor_route",
+      "name": "route",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "cache": [],
+            "cdn_frontdoor_custom_domain_ids": [],
+            "cdn_frontdoor_endpoint_id": "/subscriptions/054cbff5-8449-4b2c-b938-44031a3c698c/resourceGroups/static-frontdoor-rg/providers/Microsoft.Cdn/profiles/helloworldstacticapp-fd/afdEndpoints/helloworldstacticapp-endpoint",
+            "cdn_frontdoor_origin_group_id": "/subscriptions/054cbff5-8449-4b2c-b938-44031a3c698c/resourceGroups/static-frontdoor-rg/providers/Microsoft.Cdn/profiles/helloworldstacticapp-fd/originGroups/origin-group",
+            "cdn_frontdoor_origin_ids": [
+              "/subscriptions/054cbff5-8449-4b2c-b938-44031a3c698c/resourceGroups/static-frontdoor-rg/providers/Microsoft.Cdn/profiles/helloworldstacticapp-fd/originGroups/origin-group/origins/primary-origin"
+            ],
+            "cdn_frontdoor_origin_path": "",
+            "cdn_frontdoor_rule_set_ids": [],
+            "enabled": true,
+            "forwarding_protocol": "HttpsOnly",
+            "https_redirect_enabled": true,
+            "id": "/subscriptions/054cbff5-8449-4b2c-b938-44031a3c698c/resourceGroups/static-frontdoor-rg/providers/Microsoft.Cdn/profiles/helloworldstacticapp-fd/afdEndpoints/helloworldstacticapp-endpoint/routes/web-route",
+            "link_to_default_domain": true,
+            "name": "web-route",
+            "patterns_to_match": [
+              "/*"
+            ],
+            "supported_protocols": [
+              "Http",
+              "Https"
+            ],
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_cdn_frontdoor_endpoint.fd_endpoint",
+            "azurerm_cdn_frontdoor_origin.primary_origin",
+            "azurerm_cdn_frontdoor_origin_group.origin_group",
+            "azurerm_cdn_frontdoor_profile.fd_profile",
+            "azurerm_resource_group.rg",
+            "azurerm_storage_account.primary"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_resource_group",
+      "name": "rg",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/054cbff5-8449-4b2c-b938-44031a3c698c/resourceGroups/static-frontdoor-rg",
+            "location": "eastus",
+            "managed_by": "",
+            "name": "static-frontdoor-rg",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo1NDAwMDAwMDAwMDAwLCJkZWxldGUiOjU0MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjo1NDAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_storage_account",
+      "name": "primary",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 4,
+          "attributes": {
+            "access_tier": "Hot",
+            "account_kind": "StorageV2",
+            "account_replication_type": "RAGRS",
+            "account_tier": "Standard",
+            "allow_nested_items_to_be_public": true,
+            "allowed_copy_scope": "",
+            "azure_files_authentication": [],
+            "blob_properties": [
+              {
+                "change_feed_enabled": false,
+                "change_feed_retention_in_days": 0,
+                "container_delete_retention_policy": [],
+                "cors_rule": [],
+                "default_service_version": "",
+                "delete_retention_policy": [],
+                "last_access_time_enabled": false,
+                "restore_policy": [],
+                "versioning_enabled": false
+              }
+            ],
+            "cross_tenant_replication_enabled": false,
+            "custom_domain": [],
+            "customer_managed_key": [],
+            "default_to_oauth_authentication": false,
+            "dns_endpoint_type": "Standard",
+            "edge_zone": "",
+            "https_traffic_only_enabled": true,
+            "id": "/subscriptions/054cbff5-8449-4b2c-b938-44031a3c698c/resourceGroups/static-frontdoor-rg/providers/Microsoft.Storage/storageAccounts/helloworldstacticappprim",
+            "identity": [],
+            "immutability_policy": [],
+            "infrastructure_encryption_enabled": false,
+            "is_hns_enabled": false,
+            "large_file_share_enabled": false,
+            "local_user_enabled": true,
+            "location": "eastus",
+            "min_tls_version": "TLS1_2",
+            "name": "helloworldstacticappprim",
+            "network_rules": [],
+            "nfsv3_enabled": false,
+            "primary_access_key": "PNDI1JLFWvtRp4gZBD7Hj/FowQ5stXZnUT0LyqUw7flUpQeQHtVHkbCq1fTPem+/F88PxckKszFk+AStzV20sQ==",
+            "primary_blob_connection_string": "DefaultEndpointsProtocol=https;BlobEndpoint=https://helloworldstacticappprim.blob.core.windows.net/;AccountName=helloworldstacticappprim;AccountKey=PNDI1JLFWvtRp4gZBD7Hj/FowQ5stXZnUT0LyqUw7flUpQeQHtVHkbCq1fTPem+/F88PxckKszFk+AStzV20sQ==",
+            "primary_blob_endpoint": "https://helloworldstacticappprim.blob.core.windows.net/",
+            "primary_blob_host": "helloworldstacticappprim.blob.core.windows.net",
+            "primary_blob_internet_endpoint": "",
+            "primary_blob_internet_host": "",
+            "primary_blob_microsoft_endpoint": "",
+            "primary_blob_microsoft_host": "",
+            "primary_connection_string": "DefaultEndpointsProtocol=https;AccountName=helloworldstacticappprim;AccountKey=PNDI1JLFWvtRp4gZBD7Hj/FowQ5stXZnUT0LyqUw7flUpQeQHtVHkbCq1fTPem+/F88PxckKszFk+AStzV20sQ==;EndpointSuffix=core.windows.net",
+            "primary_dfs_endpoint": "https://helloworldstacticappprim.dfs.core.windows.net/",
+            "primary_dfs_host": "helloworldstacticappprim.dfs.core.windows.net",
+            "primary_dfs_internet_endpoint": "",
+            "primary_dfs_internet_host": "",
+            "primary_dfs_microsoft_endpoint": "",
+            "primary_dfs_microsoft_host": "",
+            "primary_file_endpoint": "https://helloworldstacticappprim.file.core.windows.net/",
+            "primary_file_host": "helloworldstacticappprim.file.core.windows.net",
+            "primary_file_internet_endpoint": "",
+            "primary_file_internet_host": "",
+            "primary_file_microsoft_endpoint": "",
+            "primary_file_microsoft_host": "",
+            "primary_location": "eastus",
+            "primary_queue_endpoint": "https://helloworldstacticappprim.queue.core.windows.net/",
+            "primary_queue_host": "helloworldstacticappprim.queue.core.windows.net",
+            "primary_queue_microsoft_endpoint": "",
+            "primary_queue_microsoft_host": "",
+            "primary_table_endpoint": "https://helloworldstacticappprim.table.core.windows.net/",
+            "primary_table_host": "helloworldstacticappprim.table.core.windows.net",
+            "primary_table_microsoft_endpoint": "",
+            "primary_table_microsoft_host": "",
+            "primary_web_endpoint": "https://helloworldstacticappprim.z13.web.core.windows.net/",
+            "primary_web_host": "helloworldstacticappprim.z13.web.core.windows.net",
+            "primary_web_internet_endpoint": "",
+            "primary_web_internet_host": "",
+            "primary_web_microsoft_endpoint": "",
+            "primary_web_microsoft_host": "",
+            "provisioned_billing_model_version": "",
+            "public_network_access_enabled": true,
+            "queue_encryption_key_type": "Service",
+            "queue_properties": [
+              {
+                "cors_rule": [],
+                "hour_metrics": [
+                  {
+                    "enabled": false,
+                    "include_apis": false,
+                    "retention_policy_days": 0,
+                    "version": "1.0"
+                  }
+                ],
+                "logging": [
+                  {
+                    "delete": false,
+                    "read": false,
+                    "retention_policy_days": 0,
+                    "version": "1.0",
+                    "write": false
+                  }
+                ],
+                "minute_metrics": [
+                  {
+                    "enabled": false,
+                    "include_apis": false,
+                    "retention_policy_days": 0,
+                    "version": "1.0"
+                  }
+                ]
+              }
+            ],
+            "resource_group_name": "static-frontdoor-rg",
+            "routing": [],
+            "sas_policy": [],
+            "secondary_access_key": "oh5N/H+DH7f4fGVXbdEkXGuyISRR2ttwJZJ0rxzREL44l9/VQ3alzZPwDa2i5dAqjBxH3tWY0XeE+AStNyWGIQ==",
+            "secondary_blob_connection_string": "DefaultEndpointsProtocol=https;BlobEndpoint=https://helloworldstacticappprim-secondary.blob.core.windows.net/;AccountName=helloworldstacticappprim;AccountKey=oh5N/H+DH7f4fGVXbdEkXGuyISRR2ttwJZJ0rxzREL44l9/VQ3alzZPwDa2i5dAqjBxH3tWY0XeE+AStNyWGIQ==",
+            "secondary_blob_endpoint": "https://helloworldstacticappprim-secondary.blob.core.windows.net/",
+            "secondary_blob_host": "helloworldstacticappprim-secondary.blob.core.windows.net",
+            "secondary_blob_internet_endpoint": "",
+            "secondary_blob_internet_host": "",
+            "secondary_blob_microsoft_endpoint": "",
+            "secondary_blob_microsoft_host": "",
+            "secondary_connection_string": "DefaultEndpointsProtocol=https;AccountName=helloworldstacticappprim;AccountKey=oh5N/H+DH7f4fGVXbdEkXGuyISRR2ttwJZJ0rxzREL44l9/VQ3alzZPwDa2i5dAqjBxH3tWY0XeE+AStNyWGIQ==;EndpointSuffix=core.windows.net",
+            "secondary_dfs_endpoint": "https://helloworldstacticappprim-secondary.dfs.core.windows.net/",
+            "secondary_dfs_host": "helloworldstacticappprim-secondary.dfs.core.windows.net",
+            "secondary_dfs_internet_endpoint": "",
+            "secondary_dfs_internet_host": "",
+            "secondary_dfs_microsoft_endpoint": "",
+            "secondary_dfs_microsoft_host": "",
+            "secondary_file_endpoint": "",
+            "secondary_file_host": "",
+            "secondary_file_internet_endpoint": "",
+            "secondary_file_internet_host": "",
+            "secondary_file_microsoft_endpoint": "",
+            "secondary_file_microsoft_host": "",
+            "secondary_location": "westus",
+            "secondary_queue_endpoint": "https://helloworldstacticappprim-secondary.queue.core.windows.net/",
+            "secondary_queue_host": "helloworldstacticappprim-secondary.queue.core.windows.net",
+            "secondary_queue_microsoft_endpoint": "",
+            "secondary_queue_microsoft_host": "",
+            "secondary_table_endpoint": "https://helloworldstacticappprim-secondary.table.core.windows.net/",
+            "secondary_table_host": "helloworldstacticappprim-secondary.table.core.windows.net",
+            "secondary_table_microsoft_endpoint": "",
+            "secondary_table_microsoft_host": "",
+            "secondary_web_endpoint": "https://helloworldstacticappprim-secondary.z13.web.core.windows.net/",
+            "secondary_web_host": "helloworldstacticappprim-secondary.z13.web.core.windows.net",
+            "secondary_web_internet_endpoint": "",
+            "secondary_web_internet_host": "",
+            "secondary_web_microsoft_endpoint": "",
+            "secondary_web_microsoft_host": "",
+            "sftp_enabled": false,
+            "share_properties": [
+              {
+                "cors_rule": [],
+                "retention_policy": [
+                  {
+                    "days": 7
+                  }
+                ],
+                "smb": []
+              }
+            ],
+            "shared_access_key_enabled": true,
+            "static_website": [
+              {
+                "error_404_document": "404.html",
+                "index_document": "index.html"
+              }
+            ],
+            "table_encryption_key_type": "Service",
+            "tags": {
+              "environment": "prod"
+            },
+            "timeouts": null
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "primary_access_key"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "primary_blob_connection_string"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "primary_connection_string"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "secondary_access_key"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "secondary_blob_connection_string"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "secondary_connection_string"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "identity": {
+            "name": "helloworldstacticappprim",
+            "resource_group_name": "static-frontdoor-rg",
+            "subscription_id": "054cbff5-8449-4b2c-b938-44031a3c698c"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiI0In0=",
+          "dependencies": [
+            "azurerm_resource_group.rg"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_storage_account_static_website",
+      "name": "website",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "error_404_document": "404.html",
+            "id": "/subscriptions/054cbff5-8449-4b2c-b938-44031a3c698c/resourceGroups/static-frontdoor-rg/providers/Microsoft.Storage/storageAccounts/helloworldstacticappprim",
+            "index_document": "index.html",
+            "storage_account_id": "/subscriptions/054cbff5-8449-4b2c-b938-44031a3c698c/resourceGroups/static-frontdoor-rg/providers/Microsoft.Storage/storageAccounts/helloworldstacticappprim",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "resource_group_name": "static-frontdoor-rg",
+            "storage_account_name": "helloworldstacticappprim",
+            "subscription_id": "054cbff5-8449-4b2c-b938-44031a3c698c"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "azurerm_storage_account.primary"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_storage_blob",
+      "name": "error_html",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "access_tier": "Hot",
+            "cache_control": "",
+            "content_md5": "",
+            "content_type": "application/octet-stream",
+            "encryption_scope": "",
+            "id": "https://helloworldstacticappprim.blob.core.windows.net/$web/404.html",
+            "metadata": {},
+            "name": "404.html",
+            "parallelism": 8,
+            "size": 0,
+            "source": "./webapp/404.html",
+            "source_content": null,
+            "source_uri": null,
+            "storage_account_name": "helloworldstacticappprim",
+            "storage_container_name": "$web",
+            "timeouts": null,
+            "type": "Block",
+            "url": "https://helloworldstacticappprim.blob.core.windows.net/$web/404.html"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "azurerm_storage_account.primary",
+            "azurerm_storage_container.static_web"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_storage_blob",
+      "name": "index_html",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "access_tier": "Hot",
+            "cache_control": "",
+            "content_md5": "",
+            "content_type": "application/octet-stream",
+            "encryption_scope": "",
+            "id": "https://helloworldstacticappprim.blob.core.windows.net/$web/index.html",
+            "metadata": {},
+            "name": "index.html",
+            "parallelism": 8,
+            "size": 0,
+            "source": "./webapp/index.html",
+            "source_content": null,
+            "source_uri": null,
+            "storage_account_name": "helloworldstacticappprim",
+            "storage_container_name": "$web",
+            "timeouts": null,
+            "type": "Block",
+            "url": "https://helloworldstacticappprim.blob.core.windows.net/$web/index.html"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "azurerm_storage_account.primary",
+            "azurerm_storage_container.static_web"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_storage_container",
+      "name": "static_web",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "container_access_type": null,
+            "default_encryption_scope": null,
+            "encryption_scope_override_enabled": null,
+            "has_immutability_policy": null,
+            "has_legal_hold": null,
+            "id": "/subscriptions/054cbff5-8449-4b2c-b938-44031a3c698c/resourceGroups/static-frontdoor-rg/providers/Microsoft.Storage/storageAccounts/helloworldstacticappprim/blobServices/default/containers/\\",
+            "metadata": null,
+            "name": null,
+            "resource_manager_id": null,
+            "storage_account_id": null,
+            "storage_account_name": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "azurerm_storage_account.primary"
+          ]
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
