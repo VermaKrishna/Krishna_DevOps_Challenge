@@ -50,4 +50,12 @@ Then once FD is created , I have got the txt records for validation .
 
 Was able to browse the -https://helloworldstaticapp.automationfoundry.cloud/
 
+Challnges:
+1. Since I need to provide a working code, sceanrio came where the user deploying may not have the custom domain, so I have designed with flag  enable_custom_domain, it was trikcy to have the flag false get it working . One can use this to gee the static site wokring with cutsom domain if make the flag true and does the "Csutom Domain" steps . 
+Local: terraform apply -var="enable_custom_domain=true" -var="custom_domain_host_name=helloworldstaticapp.automationfoundry.cloud"
+
+2. supported_protocols           = ["Http", "Https"] , if only try with HTTPS , it will fail
+3. Index.html file type should be txt/html whenit gets updated in the storage else you will be downloaded when hitting the FD url >
+4. When hiiting the FD url: helloworldstacticapp-endpoint-g4hbepfyegduawhs.z02.azurefd.net , I need to redirect to Index.html
+5. Ruleset was not getting associated .
 
