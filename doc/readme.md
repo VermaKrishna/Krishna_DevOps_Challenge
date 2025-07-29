@@ -34,3 +34,20 @@ terraform init \
   -backend-config="storage_account_name=${TF_STATE_STORAGE}" \
   -backend-config="container_name=${TF_STATE_CONTAINER}" \
   -backend-config="key=${TF_STATE_KEY}"
+```
+### Screen shot of GitHub repo to define the secrets:
+
+<img width="1188" height="605" alt="image" src="https://github.com/user-attachments/assets/2d950710-8f62-475e-88a2-6fdbbb8c3713" />
+
+### Custom Domain:
+Have created the terraform scripts which can link the Custom Domain.
+https://helloworldstaticapp.automationfoundry.cloud/
+Setup steps: I have purchased a domain and added the CNAME=record.
+<img width="961" height="160" alt="image" src="https://github.com/user-attachments/assets/3dfbc79f-63f8-4f88-9b83-9885dec7f1af" />
+
+Then once FD is created , I have got the txt records for validation .
+<img width="1000" height="146" alt="image" src="https://github.com/user-attachments/assets/6ac994d3-8860-49c0-9c70-f86b1ea692a6" />
+
+Was able to browse the -https://helloworldstaticapp.automationfoundry.cloud/
+
+
