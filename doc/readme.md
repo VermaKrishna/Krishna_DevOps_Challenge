@@ -54,11 +54,12 @@ Was able to browse the -https://helloworldstaticapp.automationfoundry.cloud/
 Create git action environment production for approval in actions. This is being used before applying the infra changes
 
 ### Challenges:
-1. Since I need to provide a working code, sceanrio came where the user deploying may not have the custom domain, so I have designed with flag  enable_custom_domain, it was trikcy to have the flag false get it working . One can use this to gee the static site wokring with cutsom domain if make the flag true and does the "Csutom Domain" steps . 
+1.Since I need to provide working code, a scenario came up where the user deploying may not have the custom domain. So, I designed it with a flag enable_custom_domain. It was tricky to get the flag working when set to false. One can use this to get the static site working with a custom domain by setting the flag to true and following the "Custom Domain" steps.
+Local command:
 Local: terraform apply -var="enable_custom_domain=true" -var="custom_domain_host_name=helloworldstaticapp.automationfoundry.cloud"
 
 2. supported_protocols           = ["Http", "Https"] , if only try with HTTPS , it will fail
-3. Index.html file type should be txt/html whenit gets updated in the storage else you will be downloaded when hitting the FD url >
+3. Index.html file type should be txt/html whenit gets updated in the storage else you will be downloaded when hitting the FD url 
 4. When hiiting the FD url: helloworldstacticapp-endpoint-g4hbepfyegduawhs.z02.azurefd.net , I need to redirect to Index.html
 5. Ruleset was not getting associated .
 
