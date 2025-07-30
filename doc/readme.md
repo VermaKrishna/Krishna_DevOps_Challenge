@@ -1,4 +1,4 @@
-# Setup steps:
+# Deployment steps:
 
 ## Prerequisites
 
