@@ -89,10 +89,11 @@ jobs:
 
   terraform-destroy:
     name: Terraform Destroy
-    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'destroy' }}
+    needs: [terraform-plan, terraform-apply]
+    if: ${{ github.event.inputs.action == 'destroy' }}
     runs-on: ubuntu-latest
     environment:
-      name: production   # 👈 Optional: Require approval for destroy as well
+      name: production  # 👈 triggers approval before destroy
 
     steps:
       - name: Checkout Code
